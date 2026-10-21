@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c0e0b">
+<title>Book your spot | The Dink House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0c0e0b;--ink2:#181b15;--cream:#f3ecd9;--lime:#d7f06a;--green:#1f6b45;--red:#c8372d;--muted:#aaa68f;--edge:#3b3d31;--r:6px}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--ink) radial-gradient(120% 50% at 50% 0,#2b2518,transparent 65%) no-repeat;color:var(--cream);font:500 17px/1.5 Barlow,system-ui,sans-serif;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.5;mix-blend-mode:soft-light;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.display,h1,.sec,.ref{font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase;line-height:.95}
+.top,.wrap,.court div{max-width:600px;margin:0 auto}
+.top{padding:max(14px,env(safe-area-inset-top)) 20px 0;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;gap:10px;align-items:center;color:var(--cream);text-decoration:none;font:400 1.05rem/1 Anton,Impact,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.logo small{display:block;font:600 .8rem 'Barlow Condensed',sans-serif;letter-spacing:.2em;color:var(--muted)}
+.my{font:700 1.1rem 'Barlow Condensed',sans-serif;color:var(--lime);text-decoration:none;border-bottom:2px solid;padding:10px 0 1px}
+.wrap{padding:0 20px 24px}
+h1{margin:30px 0 20px}
+h1 span{display:block}
+h1 .a{font-size:clamp(3.6rem,19vw,6.4rem)}
+h1 .b{display:inline-block;position:relative;font-size:clamp(2.2rem,11vw,3.6rem);color:var(--lime);margin-top:4px}
+h1 .b svg{position:absolute;left:-2%;bottom:-12px;width:104%;height:12px}
+.tag{position:relative;isolation:isolate;display:inline-block;color:var(--green);font:700 1.3rem/1.15 'Barlow Condensed',sans-serif;text-transform:uppercase;padding:12px 18px;transform:rotate(-2deg);margin:14px 0 8px}
+.tag::before,.stub::before{content:"";position:absolute;inset:0;background:var(--cream);filter:url(#rough);z-index:-1;border-radius:4px}
+.tag::after{content:"";position:absolute;top:-9px;left:50%;width:58px;height:18px;background:#d7f06aaa;transform:translateX(-50%) rotate(3deg)}
+.sec{font-size:1.7rem;margin:36px 0 14px;display:flex;gap:12px;align-items:center}
+.sec i{font-style:normal;background:var(--lime);color:var(--ink);width:2.1rem;height:2.1rem;display:grid;place-items:center;border-radius:50% 46% 54% 48%;transform:rotate(-7deg);font-size:1.2rem;flex:none}
+.picks{display:grid;gap:18px}
+input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.pick{position:relative;display:block;cursor:pointer}
+.pk{display:block;position:relative;padding:18px;border:2px solid var(--edge);background:var(--ink2);border-radius:var(--r);transition:transform .12s,box-shadow .12s}
+.pick input:checked+.pk{border-color:var(--lime);box-shadow:5px 5px 0 var(--lime);transform:translate(-2px,-2px)}
+.pick input:focus-visible+.pk,.chip input:focus-visible+span,.pay input:focus-visible+span{outline:3px solid var(--cream);outline-offset:3px}
+.pick input:disabled+.pk{opacity:.55}
+.pk .d{display:block;color:var(--lime);font-size:1.25rem}
+.pk .n{display:block;font-size:2.7rem}
+.pk .t{display:block;font:700 1.2rem 'Barlow Condensed',sans-serif;margin-top:4px}
+.pk .p{display:inline-block;background:var(--cream);color:var(--green);padding:3px 11px;margin:10px 0 4px;transform:rotate(-1.5deg);font-size:1.7rem;border-radius:3px}
+.pk .s{display:block;color:var(--muted);font-size:.98rem}
+.stamp{position:absolute;top:16px;right:14px;transform:rotate(6deg);border:3px double var(--red);color:#ff7a6c;padding:2px 9px;font:700 1.1rem 'Barlow Condensed',sans-serif;text-transform:uppercase;filter:url(#rough)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip span{display:block;padding:11px 16px;min-height:48px;border:2px solid var(--edge);border-radius:var(--r);font:700 1.15rem 'Barlow Condensed',sans-serif;text-transform:uppercase;cursor:pointer}
+.chip input:checked+span{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.fixed{margin-bottom:12px;font:700 1.25rem 'Barlow Condensed',sans-serif}
+.players{margin-top:16px;display:flex;align-items:center;gap:14px}
+.players>span,.fld>span{font:700 1.1rem 'Barlow Condensed',sans-serif}
+.step{display:inline-flex;align-items:center;border:2px solid var(--edge);border-radius:var(--r)}
+.step button{width:52px;height:48px;background:none;border:0;color:var(--lime);font:400 1.8rem Anton,sans-serif;cursor:pointer}
+.step output{min-width:44px;text-align:center;font:400 1.6rem Anton,sans-serif}
+.fld{display:block;margin-bottom:14px}
+.fld>span{display:block;margin-bottom:4px}
+.fld input,.mf input{width:100%;height:52px;padding:0 14px;font:500 1.0625rem Barlow,sans-serif;color:var(--cream);background:var(--ink2);border:2px solid var(--edge);border-radius:var(--r)}
+.fld input:focus,.mf input:focus{outline:0;border-color:var(--lime)}
+.fld small{color:var(--muted);font-size:.92rem}
+.pays{display:grid;gap:12px}
+.pay{position:relative;display:block}
+.pay span{display:block;position:relative;padding:14px 16px 14px 54px;border:2px solid var(--edge);border-radius:var(--r);cursor:pointer}
+.pay span::before{content:"";position:absolute;left:16px;top:19px;width:22px;height:22px;border:2px solid var(--muted);border-radius:50%}
+.pay input:checked+span{border-color:var(--lime)}
+.pay input:checked+span::before{border-color:var(--lime);background:radial-gradient(var(--lime) 0 45%,transparent 52%)}
+.pay b{display:block;font:700 1.3rem 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.pay small{color:var(--muted)}
+.err{color:#ff8f82;font-weight:600;min-height:1.5em;margin-top:12px}
+.cta{width:100%;min-height:64px;margin-top:6px;background:var(--lime);color:var(--ink);border:0;border-radius:var(--r);font:400 1.7rem Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;box-shadow:5px 5px 0 var(--cream);transition:transform .1s,box-shadow .1s}
+.cta:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--cream)}
+.cta:focus-visible{outline:3px solid var(--cream);outline-offset:4px}
+.cta:disabled{opacity:.6}
+.ball{width:26px;height:26px;flex:none}
+.cta:hover .ball,.cta:focus-visible .ball,.bounce .ball{animation:dink .6s ease-out 2}
+@keyframes dink{0%,100%{transform:none}35%{transform:translateY(-14px)}62%{transform:scale(1.15,.8)}}
+.fine{color:var(--muted);font-size:.92rem;margin-top:12px}
+.stub{position:relative;isolation:isolate;color:var(--ink);padding:24px 22px 20px;margin:22px 0 0;transform:rotate(-.6deg)}
+.stub .l{color:var(--green);font:700 1.1rem 'Barlow Condensed',sans-serif}
+.ref{font-size:3.4rem;letter-spacing:.05em;margin:0 0 10px}
+.void .ref{text-decoration:line-through}
+.st{display:inline-block;font:700 1.05rem 'Barlow Condensed',sans-serif;padding:3px 13px;border-radius:30px;margin-bottom:14px}
+.st.ok{background:var(--green);color:var(--cream)}
+.st.wait{background:#e8b931}
+.st.x{background:var(--red);color:#fff}
+.stub dl{border-top:3px dotted #0c0e0b66;padding-top:12px}
+.stub dl div{display:flex;justify-content:space-between;gap:16px;padding:4px 0}
+.stub dt{color:#5a5a48;font:700 1.05rem 'Barlow Condensed',sans-serif}
+.stub dd{text-align:right;font-weight:600}
+.stub p.m{margin-top:12px;font-size:.98rem}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:50px;margin-top:10px;border-radius:var(--r);font:700 1.2rem 'Barlow Condensed',sans-serif;text-transform:uppercase;cursor:pointer;text-decoration:none;background:none}
+.btn.solid{background:var(--ink);color:var(--cream);border:2px solid var(--ink)}
+.btn.line{border:2px solid var(--ink);color:var(--ink)}
+.btn.dark{border:2px solid var(--cream);color:var(--cream)}
+.btn:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+#manage,#policy{margin-top:44px}
+#policy p{margin-bottom:10px;color:#d9d3bd}
+a{color:var(--lime)}
+.court{margin-top:30px;background:linear-gradient(#1b5a52,#12403b);border-top:6px solid #e9efe9;position:relative;padding:40px 20px calc(36px + env(safe-area-inset-bottom))}
+.court::before{content:"";position:absolute;inset:0 0 auto;height:14px;background:repeating-linear-gradient(90deg,#0008 0 2px,transparent 2px 7px)}
+.demo{background:var(--lime);color:var(--ink);text-align:center;font:700 1rem 'Barlow Condensed',sans-serif;padding:6px 12px}
+[hidden]{display:none!important}
+body[data-s=rec] .only-series,body[data-s=series] .only-rec{display:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body data-s="rec">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="3" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4"/></filter></svg>
+<p class="demo" id="demo" hidden>Preview mode: bookings stay in this browser. No WhatsApp or payment is sent.</p>
+<header class="top">
+ <a class="logo" href="#"><svg width="40" height="40" viewBox="0 0 44 44" fill="none" stroke="#f3ecd9" stroke-width="2" aria-hidden="true"><path d="M8 24C6 10 20 4 30 8c8 4 6 16-4 22-6 4-15 3-18-6z"/><path d="M27 29l11 12" stroke-linecap="round" stroke-width="3"/><g fill="#f3ecd9" stroke="none"><circle cx="17" cy="14" r="1.8"/><circle cx="24" cy="14" r="1.8"/><circle cx="20" cy="20" r="1.8"/></g></svg><span><small>the</small>Dink House</span></a>
+ <a class="my" href="#manage">My booking</a>
+</header>
+<main class="wrap">
+<h1><span class="a">Pickleball</span><span class="b">Book your spot<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8C40 2 80 11 120 5s60 2 78 2" fill="none" stroke="#f3ecd9" stroke-width="3" stroke-linecap="round"/></svg></span></h1>
+<p class="tag">Pay by EFT or at the court.<br>Cancel from your phone.</p>
+
+<form id="f" novalidate>
+ <h2 class="sec"><i>1</i>Pick a session</h2>
+ <div class="picks" id="picks"></div>
+
+ <h2 class="sec"><i>2</i>When</h2>
+ <div class="only-rec"><div class="chips" id="dates"></div>
+  <div class="players"><span>Players</span><div class="step"><button type="button" id="minus" aria-label="One fewer player">&minus;</button><output id="n" aria-live="polite">1</output><button type="button" id="plus" aria-label="One more player">+</button></div></div></div>
+ <div class="only-series"><p class="fixed" id="fixed"></p><div class="chips" id="cats"></div></div>
+
+ <h2 class="sec"><i>3</i>Who&rsquo;s playing</h2>
+ <label class="fld"><span id="l1">Your name</span><input id="name1" autocomplete="name"></label>
+ <label class="fld only-series"><span>Player 2</span><input id="name2" autocomplete="off"></label>
+ <label class="fld"><span>WhatsApp number</span><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="082 000 0000"><small>Your confirmation and cancel link go here.</small></label>
+
+ <h2 class="sec"><i>4</i>Payment</h2>
+ <div class="pays">
+  <label class="pay"><input type="radio" name="pay" value="eft" checked><span><b>Pay by EFT</b><small>Instant, through your own bank app. Refunded to your account if you cancel.</small></span></label>
+  <label class="pay"><input type="radio" name="pay" value="cash"><span><b>Pay at the court</b><small>Bring cash or card and pay when you arrive.</small></span></label>
+ </div>
+ <p class="err" id="err" role="alert"></p>
+ <button class="cta" id="go" type="submit">Book now <span id="tot"></span></button>
+ <p class="fine">By booking you agree to play at your own risk and to the cancellation policy below.</p>
+</form>
+<div id="done" hidden></div>
+
+<section id="manage">
+ <h2 class="sec">Need to cancel?</h2>
+ <form class="mf" id="mf" novalidate>
+  <label class="fld"><span>Booking reference</span><input id="mref" placeholder="DH-7K2Q" autocapitalize="characters" autocomplete="off"></label>
+  <label class="fld"><span>WhatsApp number you booked with</span><input id="mphone" type="tel" inputmode="tel" placeholder="082 000 0000"></label>
+  <button class="btn dark" type="submit">Find my booking</button>
+ </form>
+ <div id="found"></div>
+</section>
+<section id="policy"><h2 class="sec">Cancellations and refunds</h2><div id="ptxt"></div></section>
+</main>
+<footer class="court"><div>
+ <p class="display" style="font-size:1.6rem;margin-bottom:8px">The Dink House</p>
+ <p>182 Elizabeth Eybers St, Vanderbijlpark</p>
+ <p>Questions? WhatsApp <a id="help" href="#">084 456 0861</a></p>
+</div></footer>
+
+<script>
+/* ---------- SETTINGS: edit these ---------- */
+const CONFIG={
+ API_BASE:"",              /* your server, e.g. "https://book.thedinkhouse.co.za/api". Leave empty for preview mode */
+ HELP_WA:"27844560861",
+ rec:{name:"Rec Play",day:"Wednesday",time:"6PM to 8PM",hour:18,price:35,cutoffH:12,note:"All equipment is included",max:4},
+ series:{name:"Seasonal Series",sub:"Spring Edition",day:"Saturday",time:"Kick-off 11:00 AM",start:"2026-10-24T11:00:00+02:00",close:"2026-10-22T23:59:00+02:00",perPlayer:100,cutoffH:24,cats:["Men","Women","Mixed"]}
+};
+/* BACKEND CONTRACT (the server that talks to Yoco and WhatsApp)
+   POST {API_BASE}/bookings              body: booking -> {...booking, ref, paid:false, cancelled:false, payUrl?}
+   GET  {API_BASE}/bookings/:ref?phone=  -> booking
+   POST {API_BASE}/bookings/:ref/cancel  body {phone} -> booking (server refunds via Yoco and sends the WhatsApp)
+   booking = {session,start,players,cat,names[],phone("27..."),pay("eft"|"cash"),amount,ref,paid,cancelled,payUrl} */
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ls={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const TZ="Africa/Johannesburg",demo=!CONFIG.API_BASE,RC=CONFIG.rec,SC=CONFIG.series;
+const BALL='<svg class="ball" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="#0c0e0b"/><g fill="#d7f06a"><circle cx="9" cy="9" r="2"/><circle cx="17" cy="9" r="2"/><circle cx="13" cy="14" r="2"/><circle cx="8" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></g></svg>';
+const norm=p=>{p=p.replace(/[\s()-]/g,"");if(p[0]=="+")p=p.slice(1);if(p[0]=="0")p="27"+p.slice(1);return /^27\d{9}$/.test(p)?p:null};
+const showPhone=p=>"0"+p.slice(2,4)+" "+p.slice(4,7)+" "+p.slice(7);
+const fmt=iso=>new Date(iso).toLocaleString("en-ZA",{weekday:"long",day:"numeric",month:"long",hour:"2-digit",minute:"2-digit",hour12:false,timeZone:TZ});
+const day=(iso,o)=>new Date(iso).toLocaleDateString("en-ZA",Object.assign({timeZone:TZ},o));
+
+/* ---------- data layer (preview mode keeps bookings in this browser) ---------- */
+const db=()=>JSON.parse(ls.get("dh_db")||"{}"),save=o=>ls.set("dh_db",JSON.stringify(o));
+const ok=async r=>{if(!r.ok)throw new Error((await r.json().catch(()=>({}))).error||"Something went wrong. Please try again.");return r.json()};
+const miss=()=>new Error("We could not find that booking. Check the reference and the number you booked with.");
+const api={
+ async create(b){
+  if(!demo)return ok(await fetch(CONFIG.API_BASE+"/bookings",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}));
+  const A="ABCDEFGHJKMNPQRSTUVWXYZ23456789";let ref="DH-";for(let i=0;i<4;i++)ref+=A[Math.random()*A.length|0];
+  const r=Object.assign({ref,paid:false,cancelled:false},b),d=db();d[ref]=r;save(d);return r},
+ async get(ref,phone){
+  if(!demo)return ok(await fetch(CONFIG.API_BASE+"/bookings/"+encodeURIComponent(ref)+"?phone="+phone));
+  const r=db()[ref];if(!r||r.phone!=phone)throw miss();return r},
+ async cancel(ref,phone){
+  if(!demo)return ok(await fetch(CONFIG.API_BASE+"/bookings/"+encodeURIComponent(ref)+"/cancel",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone})}));
+  const d=db(),r=d[ref];if(!r||r.phone!=phone)throw miss();r.cancelled=true;save(d);return r},
+ async pay(ref,phone){const d=db(),r=d[ref];r.paid=true;save(d);return r}
+};
+
+/* ---------- booking page ---------- */
+let s="rec",n=1;
+const seriesOpen=Date.now()<new Date(SC.close);
+const total=()=>s=="rec"?RC.price*n:SC.perPlayer*2;
+function wednesdays(){
+ const out=[],d=new Date(new Date().toLocaleDateString("en-CA",{timeZone:TZ})+"T00:00:00Z");
+ while(out.length<4){
+  if(d.getUTCDay()==3){const iso=d.toISOString().slice(0,10)+"T"+String(RC.hour).padStart(2,"0")+":00:00+02:00";if(new Date(iso)-Date.now()>36e5)out.push(iso)}
+  d.setUTCDate(d.getUTCDate()+1)}
+ return out}
+function build(){
+ $("#picks").innerHTML=
+ `<label class="pick"><input type="radio" name="s" value="rec" checked><span class="pk"><span class="d display">${RC.day} night</span><span class="n display">${RC.name}</span><span class="t">${RC.time}</span><span class="p display">R${RC.price} pp</span><span class="s">${RC.note}</span></span></label>
+ <label class="pick"><input type="radio" name="s" value="series"${seriesOpen?"":" disabled"}><span class="pk"><span class="stamp">${seriesOpen?"Closing "+day(SC.close,{day:"numeric",month:"short"}):"Registration closed"}</span><span class="d display">${SC.name}</span><span class="n display">${SC.sub}</span><span class="t">${SC.day}, ${SC.time}</span><span class="p display">R${SC.perPlayer} pp</span><span class="s">R${SC.perPlayer*2} per team. Doubles: men, women or mixed. Prizes for winners and a post-match bring and braai.</span></span></label>`;
+ $("#dates").innerHTML=wednesdays().map((iso,i)=>`<label class="chip"><input type="radio" name="d" value="${iso}"${i?"":" checked"}><span>${day(iso,{weekday:"short",day:"numeric",month:"short"})}</span></label>`).join("");
+ $("#cats").innerHTML=SC.cats.map((c,i)=>`<label class="chip"><input type="radio" name="cat" value="${c}"${i?"":" checked"}><span>${c} doubles</span></label>`).join("");
+ $("#fixed").textContent=fmt(SC.start).replace(/,/g,"");
+ $("#go").insertAdjacentHTML("beforeend",BALL);
+ const cut=(c,t)=>`${t}: cancel up to ${c} hours before the start.`;
+ $("#ptxt").innerHTML=`<p>${cut(RC.cutoffH,"Rec Play")} ${cut(SC.cutoffH,"Seasonal Series")}</p><p>If you paid by EFT, the full amount is refunded to you. Refunds can take a few business days to show in your account, depending on your bank.</p><p>If you booked to pay at the court, cancelling simply frees your spot.</p><p>Past the cut-off? <a href="https://wa.me/${CONFIG.HELP_WA}">Message us on WhatsApp</a> and we will help.</p>`;
+ $("#help").href="https://wa.me/"+CONFIG.HELP_WA;
+ if(demo)$("#demo").hidden=false;
+ sync()}
+function sync(){
+ s=$("input[name=s]:checked").value;document.body.dataset.s=s;
+ $("#l1").textContent=s=="rec"?"Your name":"Player 1";
+ $("#n").textContent=n;$("#tot").textContent="R"+total()}
+const err=m=>$("#err").textContent=m;
+
+/* ---------- ticket stub ---------- */
+const status=b=>b.cancelled?{k:"x",t:b.pay=="eft"&&b.paid?"Cancelled, refund on its way":"Cancelled"}:b.pay=="eft"?(b.paid?{k:"ok",t:"Paid by EFT"}:{k:"wait",t:"Waiting for EFT payment"}):{k:"ok",t:"Pay at the court"};
+const canCancel=b=>!b.cancelled&&Date.now()<new Date(b.start)-CONFIG[b.session].cutoffH*36e5;
+function stub(b){
+ const c=CONFIG[b.session],st=status(b),who=b.names.map(esc).join(" and ");
+ let a="";
+ if(!b.cancelled&&b.pay=="eft"&&!b.paid){
+  a+=demo?`<button class="btn line" data-act="pay" data-ref="${b.ref}" data-phone="${b.phone}">Preview: pretend I paid with Yoco</button>`:(b.payUrl?`<a class="btn solid" href="${esc(b.payUrl)}">Pay now with EFT</a>`:"")}
+ if(canCancel(b))a+=`<button class="btn solid" data-act="cancel" data-ref="${b.ref}" data-phone="${b.phone}">Cancel booking</button>`;
+ else if(!b.cancelled)a+=`<p class="m">The cancel window for this session has closed. <a href="https://wa.me/${CONFIG.HELP_WA}" style="color:#1f6b45">Message us on WhatsApp</a> and we will help.</p>`;
+ const note=b.cancelled?(b.pay=="eft"&&b.paid?`<p class="m">Your R${b.amount} refund is on its way. It can take a few business days to show in your account.</p>`:""):`<p class="m">${demo?"Preview mode: no WhatsApp was sent.":"We have sent a WhatsApp confirmation to "+showPhone(b.phone)+"."}</p>`;
+ return `<article class="stub${b.cancelled?" void":""}"><p class="l">Booking reference</p><p class="ref">${esc(b.ref)}</p><p class="st ${st.k}">${st.t}</p>
+ <dl><div><dt>Session</dt><dd>${c.name}${b.cat?", "+esc(b.cat):""}</dd></div><div><dt>When</dt><dd>${fmt(b.start)}</dd></div><div><dt>${b.session=="rec"?"Players":"Team"}</dt><dd>${b.session=="rec"?b.players+" (booked by "+who+")":who}</dd></div><div><dt>Total</dt><dd>R${b.amount}</dd></div></dl>${note}${a}</article>`}
+function showDone(b){
+ $("#f").hidden=true;const d=$("#done");d.hidden=false;
+ d.innerHTML=stub(b)+`<button class="btn dark" data-act="again">Make another booking</button>`;
+ d.classList.add("bounce");d.scrollIntoView({block:"start"})}
+
+/* ---------- events ---------- */
+document.addEventListener("change",e=>{if(e.target.name=="s")sync()});
+$("#minus").onclick=()=>{n=Math.max(1,n-1);sync()};
+$("#plus").onclick=()=>{n=Math.min(RC.max,n+1);sync()};
+$("#f").addEventListener("submit",async e=>{
+ e.preventDefault();err("");
+ const name1=$("#name1").value.trim(),name2=$("#name2").value.trim(),phone=norm($("#phone").value),pay=$("input[name=pay]:checked").value;
+ if(!name1)return err(s=="rec"?"Add your name.":"Add the name of player 1.");
+ if(s=="series"&&!name2)return err("Add the name of player 2.");
+ if(!phone)return err("Enter a South African cell number, like 082 000 0000.");
+ const b={session:s,start:s=="rec"?$("input[name=d]:checked").value:SC.start,players:s=="rec"?n:2,cat:s=="series"?$("input[name=cat]:checked").value:null,names:s=="rec"?[name1]:[name1,name2],phone,pay,amount:total()};
+ const go=$("#go");go.disabled=true;
+ try{
+  const r=await api.create(b);ls.set("dh_last",JSON.stringify({ref:r.ref,phone}));
+  if(!demo&&pay=="eft"&&r.payUrl){location.href=r.payUrl;return}
+  showDone(r)
+ }catch(x){err(x.message)}finally{go.disabled=false}});
+$("#mf").addEventListener("submit",async e=>{
+ e.preventDefault();const ref=$("#mref").value.trim().toUpperCase(),ph=norm($("#mphone").value),box=$("#found");
+ if(!ref||!ph){box.innerHTML='<p class="err">Enter your reference and the number you booked with.</p>';return}
+ try{box.innerHTML=stub(await api.get(ref,ph))}catch(x){box.innerHTML='<p class="err">'+esc(x.message)+'</p>'}});
+document.addEventListener("click",async e=>{
+ const t=e.target.closest("[data-act]");if(!t)return;const a=t.dataset.act;
+ if(a=="again"){$("#done").hidden=true;$("#f").hidden=false;$("#f").reset();n=1;sync();window.scrollTo(0,0)}
+ if(a=="cancel"){
+  if(!t.dataset.armed){t.dataset.armed=1;t.textContent="Tap again to confirm";setTimeout(()=>{delete t.dataset.armed;t.textContent="Cancel booking"},4000);return}
+  try{t.closest("article").outerHTML=stub(await api.cancel(t.dataset.ref,t.dataset.phone))}catch(x){t.textContent=x.message}}
+ if(a=="pay")t.closest("article").outerHTML=stub(await api.pay(t.dataset.ref,t.dataset.phone))});
+
+build();
+/* coming back from Yoco: ?ref=DH-XXXX */
+/* after paying, Yoco tells our server a few seconds later, so keep checking for a short while */
+function poll(b){if(demo||b.pay!="eft"||b.paid||b.cancelled)return;let k=0;
+ const t=setInterval(async()=>{if(++k>20)return clearInterval(t);
+  try{const r=await api.get(b.ref,b.phone);if(r.paid||r.cancelled){clearInterval(t);const a=document.querySelector("#done article");if(a)a.outerHTML=stub(r)}}catch(e){}},3000)}
+(async()=>{const q=new URLSearchParams(location.search).get("ref"),l=JSON.parse(ls.get("dh_last")||"null");
+ if(q&&l&&l.ref==q)try{const r=await api.get(q,l.phone);showDone(r);poll(r)}catch(e){}})();
+</script>
+</body>
+</html>
